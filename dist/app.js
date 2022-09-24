@@ -12,7 +12,7 @@ const Client_1 = require("./Entities/Client");
 const Blogs_1 = require("./Entities/Blogs");
 const https_1 = __importDefault(require("https"));
 const fs_1 = __importDefault(require("fs"));
-// const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
@@ -37,7 +37,7 @@ Appdatasource.initialize()
         key: fs_1.default.readFileSync("attech.pem"),
         cert: fs_1.default.readFileSync("cert.pem"),
     }, app)
-        .listen(5000, () => {
+        .listen(PORT, () => {
         console.log("Successfully Run on Port 5000.....");
     });
 })
