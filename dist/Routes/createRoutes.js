@@ -17,6 +17,7 @@ const express_1 = __importDefault(require("express"));
 const Client_1 = require("../Entities/Client");
 const Blogs_1 = require("../Entities/Blogs");
 const s3_1 = require("../s3");
+const CurrentDate_1 = require("../CurrentDate");
 const multer_1 = __importDefault(require("multer"));
 const upload = (0, multer_1.default)({ dest: "uploads/" });
 const router = express_1.default.Router();
@@ -70,12 +71,14 @@ router.post("/blogform", upload.array("image", 3), (req, res) => __awaiter(void 
             const keylist = result === null || result === void 0 ? void 0 : result.map((values) => {
                 return values.Key;
             });
+            const date = (0, CurrentDate_1.formatDate)(new Date());
             const blogsubmit = Blogs_1.Blog.create({
                 heading: heading,
                 tags: tags,
                 category: category,
                 Key: keylist,
                 content: content,
+                created_date: date,
             });
             yield blogsubmit.save();
             return res.json(blogsubmit).send({ message: "Submit Done" });

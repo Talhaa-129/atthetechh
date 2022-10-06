@@ -18,6 +18,7 @@ app.use("/api", createRoutes_1.ClientRouter);
 const Appdatasource = new typeorm_1.DataSource({
     type: "postgres",
     host: "44.204.88.193",
+    // host:'localhost',
     port: 5432,
     username: "postgres",
     password: "password",
